@@ -2,6 +2,8 @@ Slack 'bot' that runs as an AWS lambda so that it can be scheduled.
 Queries the Boston Food Truck ArcGIS API to get trucks at specified locations, then posts to a Slack webhook endpoint.
 Ignores weekend days and for now will only report the Lunch schedule.
 
+![Sample output from slack channel](https://github.com/zswnason/boston-food-truck-slack-lambda/raw/master/images/sample.png "Sample Slack Output")
+
 Must provide the following environment variables:
 * `SLACK_TOKEN`: the app/webhook token generated from Slack
 * `LOCATIONS`: A comma separated list of food truck locations to report on. The values must precisely match this set:
@@ -24,13 +26,10 @@ Must provide the following environment variables:
     * Seaport District
     * Blossom Street at Emerson Place
     * Hurley Building
+    * there's a few others; I need to check their syntax
 
 Depends on: requests, pytest (testing only)
 
 Usage:
 
-Add the function package to AWS Lambda and set a CloudWatch schedule trigger.
-
-Provide the environment variables noted above.
-
-No IAM privileges are required.
+Add the function package to AWS Lambda and set a CloudWatch schedule trigger. Provide the environment variables noted above. No IAM privileges are required. There are several different ways to setup the Slack side of this, so that's up to you. I suggest having it send to a private channel first to test it out.
