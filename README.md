@@ -2,7 +2,7 @@ Slack 'bot' that runs as an AWS lambda so that it can be scheduled.
 Queries the Boston Food Truck ArcGIS API to get trucks at specified locations, then posts to a Slack webhook endpoint.
 Ignores weekend days and for now will only report the Lunch schedule.
 
-![Sample output from slack channel](https://github.com/zswnason/boston-food-truck-slack-lambda/raw/master/images/sample.png "Sample Slack Output")
+![Sample output from slack channel](https://raw.githubusercontent.com/zswanson/boston-food-truck-lambda/master/images/sample.png "Sample Slack Output")
 
 Must provide the following environment variables:
 * `SLACK_TOKEN`: the app/webhook token generated from Slack
