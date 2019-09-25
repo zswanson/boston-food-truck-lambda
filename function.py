@@ -95,17 +95,26 @@ def get_env_locations():
                          "expected a string with comma separated values")
 
 
+def get_env_token():
+    try:
+        return os.environ['SLACK_TOKEN']
+    except KeyError:
+        raise Exception("ERROR: environment variable SLACK_TOKEN not provided")
+
+
 # TODO: logic to handle Lunch or Dinner based on time of day in the context, and an environment var
 def lambda_handler(event, context):
     print(f"BostonFoodTruck Slackbot - version:{context.function_version}")
 
-    try:
-        slack_token = os.environ['SLACK_TOKEN']
-    except KeyError:
-        raise Exception("ERROR: environment variable SLACK_TOKEN not provided")
+    if event and event['test'] == True:
+        slack_token = event['token']
+        locations = event['locations']
+        today = event['day']
+    else:
+        slack_token = get_env_token()
+        locations =  get_env_locations()
+        today = calendar.day_name[date.today().weekday()]
 
-    locations = get_env_locations()
-    today = calendar.day_name[date.today().weekday()]
     if is_weekend(today):
         print(f'{today} is a weekend, skipping')
         exit(0)
