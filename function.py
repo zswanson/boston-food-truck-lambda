@@ -108,11 +108,11 @@ def lambda_handler(event, context):
 
     if event and event['test'] == True:
         slack_token = event['token']
-        locations = event['locations']
+        locations = [x for x in event['locations'].split(',')]
         today = event['day']
     else:
         slack_token = get_env_token()
-        locations =  get_env_locations()
+        locations = get_env_locations()
         today = calendar.day_name[date.today().weekday()]
 
     if is_weekend(today):

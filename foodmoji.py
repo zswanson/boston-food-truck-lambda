@@ -18,6 +18,7 @@ __foodmoji = {
     "Penny Packer's": ":sandwich:",
     "Roxy's Grill Cheese": ':sandwich:',
     "Sa Pa": ':takeout_box:',
+    "Sate Grill (Momogoose)": "",
     'Say Pao': ':sandwich:',
     "Tacos Don Beto": ":taco:",
     "Tenoch": ":taco:",
