@@ -1,5 +1,5 @@
 __foodmoji = {
-    "Amigos Locos": "taco:",
+    "Amigos Locos": ":taco:",
     "Baja Taco Truck": ":taco:",
     "Bibim Box": ':takeout_box:',
     'Bacon Truck': ':bacon:',
