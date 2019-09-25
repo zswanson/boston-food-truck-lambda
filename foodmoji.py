@@ -7,7 +7,7 @@ __foodmoji = {
     "Chik Chak": ':stuffed_flatbread:',
     'Chubby Chickpea': ':stuffed_flatbread:',
     'Cookie Monstah': ':cookie:',
-    "Daddy's Bonetown Burgers": ':burger:',
+    "Daddy's Bonetown Burgers": ':hamburger:',
     "Gogi on the Block": ':takeout_box:',
     "Indulge India": ':curry:',
     'Kebabish': ':stuffed_flatbread:',
@@ -20,7 +20,7 @@ __foodmoji = {
     "Sa Pa": ':takeout_box:',
     'Say Pao': ':sandwich:',
     "Tacos Don Beto": ":taco:",
-    "Tenoch Mexican": ":taco:",
+    "Tenoch": ":taco:",
     "Walloon": ':chicken:',
 }
 
