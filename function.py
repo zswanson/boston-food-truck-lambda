@@ -1,12 +1,11 @@
 from datetime import date
-from ast import literal_eval
 import calendar
 import requests
 import os
 import foodmoji
 
 # TODO: randomized leader messages
-slackLeaderMessage = 'Hey! Are you staring at a boring :sandwich: for lunch? Try these trucks instead! :chompy:\n'
+slackLeaderMessage = 'Hey <@here>! Are you staring at a boring :sandwich: for lunch? Try these trucks instead! :chompy:\n'
 slackUrl = f'https://hooks.slack.com/services/'
 slackBotName = 'FoodTruckBot'
 slackBotEmoji = ':truck:'
@@ -44,6 +43,7 @@ def get_food_trucks(location: str, day: str, time: str = 'Lunch'):
 def build_message(day: str, locations, time: str = 'Lunch'):
     """
     Primary business logic occurs here, makes the queries and builds the slack output message
+    :param locations:
     :param day: day of the weeek, full word
     :param time: Lunch or Dinner
     :return: formatted slack message
@@ -52,7 +52,7 @@ def build_message(day: str, locations, time: str = 'Lunch'):
     message = ""
     for loc in locations:
         food_trucks = get_food_trucks(loc, day, time)
-        if food_trucks != []:
+        if food_trucks:
             # pinpoint location is the same for each element, only check once
             pinpoint = food_trucks[0]['Pinpoint']
             # location header, using bold markdown
@@ -60,11 +60,14 @@ def build_message(day: str, locations, time: str = 'Lunch'):
             for truck in food_trucks:
                 # some of the trucks have extra whitespace in the geojson
                 name = str.rstrip(truck['Truck'])
-                link = f"- {truck['Link']}" if truck['Link'] is not None else ''
                 flair = foodmoji.get_foodmoji(name)
 
+                # format the name as a rich url
+                if truck['Link'] is not None:
+                    name = f"<{truck['Link']}|{name}>"
+
                 # truck attributes are indented relative to the location, led by a bullet
-                message = message + f"\t* {flair} {truck['Truck']} {link}\n"
+                message = message + f"\t* {flair} {name}\n"
 
     if message != "":
         return slackLeaderMessage + message
@@ -72,7 +75,7 @@ def build_message(day: str, locations, time: str = 'Lunch'):
         return None
 
 
-def is_weekend(day:str):
+def is_weekend(day: str):
     return day in ['Saturday', 'Sunday']
 
 
@@ -106,7 +109,7 @@ def get_env_token():
 def lambda_handler(event, context):
     print(f"BostonFoodTruck Slackbot - version:{context.function_version}")
 
-    if event and event['test'] == True:
+    if event and event['test'] is True:
         slack_token = event['token']
         locations = [x for x in event['locations'].split(',')]
         today = event['day']
