@@ -5,7 +5,7 @@ import os
 import foodmoji
 
 # TODO: randomized leader messages
-slackLeaderMessage = 'Hey <@here>! Are you staring at a boring :sandwich: for lunch? Try these trucks instead! :chompy:\n'
+slackLeaderMessage = 'Hey <@here>! Are you staring at a boring :sandwich: for lunch? Try these trucks instead!\n'
 slackUrl = f'https://hooks.slack.com/services/'
 slackBotName = 'FoodTruckBot'
 slackBotEmoji = ':truck:'
