@@ -109,7 +109,7 @@ def get_env_token():
 def lambda_handler(event, context):
     print(f"BostonFoodTruck Slackbot - version:{context.function_version}")
 
-    if event and event['test'] is True:
+    if event.get('test', None):
         slack_token = event['token']
         locations = [x for x in event['locations'].split(',')]
         today = event['day']
