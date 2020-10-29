@@ -71,8 +71,7 @@ def build_message(day: str, locations, time: str = 'Lunch'):
 
     if message != "":
         return slackLeaderMessage + message
-    else:
-        return None
+    return None
 
 
 def is_weekend(day: str):
