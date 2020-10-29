@@ -6,7 +6,7 @@ import foodmoji
 
 # TODO: randomized leader messages
 slackLeaderMessage = 'Hey <!channel>! Are you staring at a boring :sandwich: for lunch? Try these trucks instead!\n'
-slackUrl = f'https://hooks.slack.com/services/'
+slackUrl = 'https://hooks.slack.com/services/'
 slackBotName = 'FoodTruckBot'
 slackBotEmoji = ':truck:'
 bostonArcGisAccount = 'sFnw0xNflSi8J0uh'
